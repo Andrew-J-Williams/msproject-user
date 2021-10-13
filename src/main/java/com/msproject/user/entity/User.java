@@ -20,6 +20,6 @@ public class User {
 	private Long userId;
 	private String firstName;
 	private String lastName;
-	private String emailId;
+	private String email;
 	private Long departmentId;
 }
