@@ -12,17 +12,18 @@ eureka:  client:    register-with-eureka: true
   instance:
     hostname: localhost
     
-resilience4j:  circuitbreaker:    configs:      shared: 
+resilience4j:  circuitbreaker:    instances:      userService:
         register-health-indicator: true
-        sliding-window-type: COUNT_BASED
-        sliding-window-size: 5
-        failure-rate-threshold: 40
-        slow-call-rate-threshold: 40
-        permitted-number-of-calls-in-half-open-state: 1
-        max-wait-duration-in-half-open-state: 10s
-        wait-duration-in-open-state: 10s
-        slow-call-duration-threshold: 2s
-        writable-stack-trace-enabled: true
+        event-consumer-buffer-size: 10
         automatic-transition-from-open-to-half-open-enabled: true
-    instances:      example:
-        base-config: shared
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10
+        wait-duration-in-open-state: 5s
+        sliding-window-type: COUNT_BASED
+
+management:  health:
+    circuitbreakers:      enabled: true
+  endpoints:    web:      exposure:        include: health
+  endpoint:    health:      show-details: always

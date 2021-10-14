@@ -45,4 +45,11 @@ public class UserService {
 		
 		return vo;
 	}
+
+	public ResponseTemplateVO userFallback(Exception e) {
+		// TODO Auto-generated method stub
+		log.info("Inside userFallback inside of UserService");
+		return null;
+	}
+	
 }
