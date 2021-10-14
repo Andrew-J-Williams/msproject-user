@@ -49,7 +49,27 @@ public class UserService {
 	public ResponseTemplateVO userFallback(Exception e) {
 		// TODO Auto-generated method stub
 		log.info("Inside userFallback inside of UserService");
-		return null;
+		
+		ResponseTemplateVO vo = new ResponseTemplateVO(); 
+		User user = new User();
+		Department department = new Department();
+		
+		user.setUserId(0L);
+		user.setFirstName("First");
+		user.setLastName("Last");
+		user.setEmail("Unknown");
+		user.setDepartmentId(0L);
+		
+		department.setDepartmentId(0L);
+		department.setDepartmentName("Unknown");
+		department.setDepartmentAddress("Unknown");
+		department.setDepartmentCode("N/A");
+		
+		vo.setUser(user);
+		vo.setDepartment(department);
+		
+		
+		return vo;
 	}
 	
 }
