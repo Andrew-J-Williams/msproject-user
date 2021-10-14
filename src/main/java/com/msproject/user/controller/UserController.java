@@ -26,9 +26,15 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/")
+	@CircuitBreaker(name=USER_SERVICE, fallbackMethod="userCreateFail")
 	public User saveUser(@RequestBody User user) {
 		log.info("Inside saveUser inside of UserController");
 		return userService.saveUser(user);
+	}
+	
+	public User userCreateFail(Exception e) {
+		log.info("Inside userCreateFail inside of UserController");
+		return userService.userCreateFail(e);
 	}
 
 	@GetMapping("/{id}")

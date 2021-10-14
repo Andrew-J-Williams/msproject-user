@@ -71,5 +71,20 @@ public class UserService {
 		
 		return vo;
 	}
+
+	public User userCreateFail(Exception e) {
+		// TODO Auto-generated method stub
+		log.info("Inside userCreateFail inside of UserService");
+		
+		User user = new User();
+		
+		user.setUserId(0L);
+		user.setFirstName("First - FAILED");
+		user.setLastName("Last - FAILED");
+		user.setEmail("Unknown - FAILED");
+		user.setDepartmentId(0L);
+		
+		return user;
+	}
 	
 }
